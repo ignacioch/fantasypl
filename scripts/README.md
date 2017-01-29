@@ -19,8 +19,7 @@ We are parsing https://fantasy.premierleague.com/drf/bootstrap-static once a day
 # Databases description
 
 Basic databases are :
-+ players, for storing our players data
-+ players_stats , for storing our players overall stats
++ players, for storing our players data  plus overall stats
 + players_history_price, for storing our player price per day
 + users, for storing our users
 + fantasy_teams, for storing the ids of the teams we follow
@@ -51,16 +50,18 @@ This will contain players active data.
 | team          | INT | FK | team id - foreign key to teams table |
 | transfers_in  | INT | | |
 | transfers_out | INT | | |
-| now_cost      | INT | | /10 gives the value in M |
+| now_cost      | INT | | |
 | total points  | INT | | |
 
-**players_data**
+**players_history_price**
 
-This will contain players stats data accumulated for the whole season.
+This will contain players history price.
 
 | Column        | Type          | Notes | Comments |
 | ------------- |:-------------:| -----:| :------- |
 | player_id     | INT           | PK    | player_id coming from fpl web site |
+| value         | INT           |       | value on the given date |
+| v_datetime    | DATETIME      |       | date | 
 
 
 

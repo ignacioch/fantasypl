@@ -51,25 +51,23 @@ def init_players_data( json_data ):
     for x in range( 0, totalPlayers ):
         player = parse_score_for_player( json_data["elements"][x])
         # in the first time we need to update all the dbs with the data so far
-        player.insertStats()
-        #update scores db for each history fixture
-        #player.insertScores()'''
+        player.insertStats( db )
 
 
-def update_scores():
-    # fetch played GWs so far
-    # compare with the length of the fixtureHistory
-    # if different get the tail of the list [or as a security get the last N elements based on the length difference]
-    # update the DB with these data
-    for x in range(1, 2):
-        logging.info('update data for %s' , str(x))
-        player = parse_score_for_player(15)
-        # in the first time we need to update all the dbs with the data so far
-        player.updateStats()
-        #update scores db for each history fixture
-        player.updateScores()
+def update_value ( json_data ) :
+    totalPlayers = len( json_data[ "elements" ] )
+    for x in range( 0, totalPlayers )   :
+        player = parse_score_for_player( json_data["elements"][x])
+        player.insert_history_price( db )
 
-
+db = SimpleMysql (  db ='fantasydb'     ,
+                    host = 'ignatiosch-london.comctnyap4ze.eu-west-2.rds.amazonaws.com',
+                    user = 'ignch'      ,
+                    passwd = 'p2nas0qe' ,
+                    autocommit = True   ,
+                    charset='utf8'      ,
+                    use_unicode=True
+                 )
 
 if __name__ == "__main__" :
     # parse arguments
@@ -92,8 +90,8 @@ if __name__ == "__main__" :
 
     if ( args.init ) :
         init_players_data( json_data )
-    #elif (args.update_type == "update") :
-        #update_scores()
+    else :
+        update_value( json_data )
 
 
 
