@@ -45,19 +45,12 @@ def parse_score_for_player(data) :
                     )
     return player
 
-
-def init_players_data( json_data ):
-    totalPlayers = len( json_data[ "elements" ] )
-    for x in range( 0, totalPlayers ):
-        player = parse_score_for_player( json_data["elements"][x])
-        # in the first time we need to update all the dbs with the data so far
-        player.insertStats( db )
-
-
 def update_value ( json_data ) :
     totalPlayers = len( json_data[ "elements" ] )
     for x in range( 0, totalPlayers )   :
         player = parse_score_for_player( json_data["elements"][x])
+        print 'Updating player : ' + str( player.playerId )
+        player.insertStats( db )
         player.insert_history_price( db )
 
 db = SimpleMysql (  db ='fantasydb'     ,
@@ -87,11 +80,7 @@ if __name__ == "__main__" :
     ## we should save the existing api json file as our back up on our S3 instance
     ## TODO - save the json of the day on our S3 instance
 
-
-    if ( args.init ) :
-        init_players_data( json_data )
-    else :
-        update_value( json_data )
+    update_value( json_data )
 
 
 

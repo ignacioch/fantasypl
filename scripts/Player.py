@@ -93,9 +93,10 @@ class Player:
         dt["p_bonus"                    ]   = self.bonus
         dt["p_bps"                      ]   = self.bps
 
-        db.insert( 'player' , # TABLE NAME
-                    dt        # data
-                 )
+        db.insertOrUpdate( 'player' , # TABLE NAME
+                            dt      , # data
+                            'p_id'
+                         )
 
         #logging.debug('Inserting data for player : %s ',str(self.name))    
 
