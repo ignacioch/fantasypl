@@ -41,7 +41,8 @@ def parse_score_for_player(data) :
                         reds                            = data["red_cards"]                     ,
                         saves                           = data["saves"]                         ,
                         bonus                           = data["bonus"]                         ,
-                        bps                             = data["bps"]
+                        bps                             = data["bps"]                           ,
+                        position                        = data["element_type"]                  
                     )
     return player
 
