@@ -27,7 +27,8 @@ class Player:
                     reds                ,
                     saves               ,
                     bonus               ,
-                    bps
+                    bps                 ,
+                    position
                 ):
 
         self.playerId          = playerId
@@ -54,6 +55,7 @@ class Player:
         self.saves             = saves
         self.bonus             = bonus
         self.bps               = bps
+        self.position          = position
 
 
     def insertStats(self , db) :
@@ -92,6 +94,7 @@ class Player:
         dt["p_saves"                    ]   = self.saves
         dt["p_bonus"                    ]   = self.bonus
         dt["p_bps"                      ]   = self.bps
+        dt["p_position"                 ]   = self.position
 
         db.insertOrUpdate( 'player' , # TABLE NAME
                             dt      , # data
