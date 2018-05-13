@@ -1,0 +1,9 @@
+# logs and databases #
+######################
+*.log
+*.sql
+*.sqlite
+
+# testing folder #
+##################
+data/*
